@@ -1,0 +1,66 @@
+{
+  "name": "integration-testing-example",
+  "version": "1.0.0",
+  "description": "An example of a service which has integration tests with docker compose and stubby4j",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/unit/*.test.js",
+    "test-integration": "docker-compose -f ./test/integration/docker-compose.yaml up --force-recreate --build --remove-orphans --exit-code-from integration-tests integration-tests && docker-compose -f ./test/integration/docker-compose.yaml down --remove-orphans",
+    "test-integration-verbose": "docker-compose -f ./test/integration/docker-compose.yaml up --force-recreate --build --remove-orphans --exit-code-from integration-tests integration-tests dogs-api employees-api dog-scheduling-service email-sending-service && docker-compose -f ./test/integration/docker-compose.yaml down --remove-orphans",
+    "start": "node src/server.js"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "pretty-quick --staged",
+        "eslint --fix",
+        "git add"
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run test"
+    }
+  },
+  "engines": {
+    "node": ">=8.9.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DvirSh/integration-testing-example.git"
+  },
+  "author": "dvir@soluto.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DvirSh/integration-testing-example/issues"
+  },
+  "homepage": "https://github.com/DvirSh/integration-testing-example#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-chai": "0.0.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-mocha": "^5.1.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.14.0",
+    "pretty-quick": "^1.6.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "celebrate": "^8.0.1",
+    "escape-html": "^1.0.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.4",
+    "nconf": "^0.10.0",
+    "uuid": "^3.3.2"
+  }
+}

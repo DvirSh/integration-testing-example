@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "standard",
+    "airbnb-base",
+    "plugin:node/recommended"
+  ],
+  "plugins": [
+    "import",
+    "promise",
+    "mocha",
+    "node",
+    "chai"
+  ],
+  "rules": {
+    "comma-dangle": "off",
+    "import/prefer-default-export": "off",
+    "no-warning-comments": ["warn", { "terms": ["todo", "fixme"], "location": "anywhere" }],
+    "arrow-parens": "off",
+    "max-len": ["error", { "code": 150 }],
+    "no-console": ["error"],
+    "no-plusplus": ["off"],
+    "mocha/no-exclusive-tests": "error"
+  },
+  "env": {
+    "jasmine": true,
+    "mocha": true
+  }
+}

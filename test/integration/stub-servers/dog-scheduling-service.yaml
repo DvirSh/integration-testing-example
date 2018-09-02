@@ -1,0 +1,12 @@
+- request:
+    method: GET
+    url: /api/v1/schedule
+    query:
+      dogId: ".*"
+      employeeId: "11"
+  response:
+    headers:
+         content-type: application/json
+    status: 200
+    body: >
+      ["Monday","Tuesday"]

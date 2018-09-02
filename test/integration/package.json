@@ -1,0 +1,34 @@
+{
+  "name": "integration-tests",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "test": "mocha src/*.spec.js --recursive --timeout 10000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^5.2.0",
+    "mongodb": "^3.1.4",
+    "nconf": "^0.10.0"
+  },
+  "devDependencies": {
+    "base": "^3.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-chai": "0.0.1",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-mocha": "^5.0.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=10.2.0"
+  }
+}

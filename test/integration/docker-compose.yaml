@@ -1,0 +1,57 @@
+version: "3.1"
+
+services:
+  dogs-api:
+    build: ../../
+    ports:
+      - "3000:3000"
+    depends_on:
+      - dog-scheduling-service
+      - employees-api
+      - dog-db
+      - email-sending-service
+    environment:
+      - node_env=tests
+      - employeesApiUrl=http://employees-api:3001
+      - dogSchedulingServiceUrl=http://dog-scheduling-service:3002
+      - emailSendingServiceUrl=http://email-sending-service:3003
+      - dogDatabaseUrl=mongodb://dog-db:27017/admin
+
+  integration-tests:
+    build: ./
+    depends_on:
+      - dogs-api
+    environment:
+      - dogsApiUrl=http://dogs-api:3000
+      - dogDatabaseUrl=mongodb://dog-db:27017/admin
+
+  employees-api:
+    image: sandokandias/stubby4j-docker
+    ports:
+      - "3001:3001"
+    environment:
+      STUBBY_PORT: 3001
+    volumes:
+      - ./stub-servers/employees-api.yaml:/usr/local/stubby.yml:Z
+
+  dog-scheduling-service:
+    image: sandokandias/stubby4j-docker
+    ports:
+      - "3002:3002"
+    environment:
+      STUBBY_PORT: 3002
+    volumes:
+      - ./stub-servers/dog-scheduling-service.yaml:/usr/local/stubby.yml:Z
+
+  email-sending-service:
+    image: sandokandias/stubby4j-docker
+    ports:
+      - "3003:3003"
+    environment:
+      STUBBY_PORT: 3003
+    volumes:
+      - ./stub-servers/email-sending-service.yaml:/usr/local/stubby.yml:Z
+
+  dog-db:
+    image: mongo:latest
+    restart: always

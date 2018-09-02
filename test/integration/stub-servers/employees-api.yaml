@@ -1,0 +1,7 @@
+- request:
+    method: GET
+    url: /api/v1/employee/11/emailAddress
+  response:
+    status: 200
+    body: >
+      "ricksanchez@soluto.com"

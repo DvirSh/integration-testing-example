@@ -1,0 +1,9 @@
+- request:
+    method: POST
+    url: /api/v1/sendDogSchedule
+    post: >
+      {"emailAddress":"ricksanchez@soluto.com","dogName":"Pikachu","schedule":["Monday","Tuesday"]}
+  response:
+    status: 200
+    body: >
+      "test-notification-id"
